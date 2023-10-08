@@ -5,6 +5,7 @@ import { Box } from '@mui/material';
 import Form from './assets/form';
 import Bar from './assets/bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import IndexPage from './assets';
 
 
 function App() {
@@ -33,7 +34,7 @@ function App() {
 
 
   return (
-    <Box height={'100vh'}>
+    <Box height={'100vh'} boxSizing={'border-box'}>
 
       {storage?<Bar user={user}/>:undefined}
 
@@ -66,6 +67,10 @@ function App() {
         </Box>
 
 
+      </Box>
+
+      <Box>
+        {storage?<IndexPage/>:undefined}
       </Box>
 
 
