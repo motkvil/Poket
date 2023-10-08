@@ -3,13 +3,12 @@ import '../App.css'
 import { useCookies } from 'react-cookie'
 import { Box } from '@mui/material';
 import gsap from 'gsap';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
 
-function Intro2(props) {
-  const [cookies, setCookie] = useCookies(['Potk']);
-  const [cookieUser, setCookieUser] = useCookies(['User']);
+function Form(props) {
   const [user, setUser] = useState([
     {title:'username', value:undefined},
     {title:'correo', value:undefined},
@@ -17,17 +16,12 @@ function Intro2(props) {
   ])
   const [myInput, setMyInput] = useState("")
   const [isComplete, setIsComplete] = useState(false)
+
   
+  
+  const storageUser = AsyncStorage.getItem('user')
 
 
-
-
-  const createCookie = () => {
-    setCookie('Potk', {iniciar:true}, {path:''})
-    setTimeout(()=>{
-      document.location.reload()
-    },[2000])
-  }
 
 
   const form = () => {
@@ -96,6 +90,7 @@ function Intro2(props) {
       delay:1
     })
 
+
     let count = 0
     for (let index = 0; index < user.length; index++) {
       const element = user[index];
@@ -107,7 +102,16 @@ function Intro2(props) {
 
     if(count===user.length){
       setIsComplete(true)
-      setCookieUser('User',user,{path:''})
+
+      let localUser = {
+        username: user[0].value,
+        email: user[1].value,
+        telefono: user[2].value
+      }
+      
+      AsyncStorage.setItem('user',JSON.stringify(localUser))
+      
+
       document.location.reload()
     }
 
@@ -119,7 +123,7 @@ function Intro2(props) {
     <Box height={'0px'} className={'int'} overflow={'hidden'}>
 
       {
-        cookieUser.User===undefined?
+        props.storage===false?
         isComplete?
         <Box fontSize={20} p={1}>
           Listo
@@ -131,7 +135,7 @@ function Intro2(props) {
         :undefined
       }
 
-      {cookieUser.User?undefined:form()}
+      {props.storage?undefined:form()}
 
 
 
@@ -141,4 +145,4 @@ function Intro2(props) {
 }
 
 
-export default Intro2
+export default Form

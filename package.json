@@ -13,6 +13,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.12",
+    "@react-native-async-storage/async-storage": "^1.19.3",
     "gsap": "^3.12.2",
     "jsonwebtoken": "^9.0.2",
     "react": "^18.2.0",

@@ -1,34 +1,47 @@
 
 import { useEffect, useState } from 'react';
 import './App.css'
-import { useCookies } from 'react-cookie'
 import { Box } from '@mui/material';
-import gsap from 'gsap';
-import Intro from './assets/intro';
-import Intro2 from './assets/intro2';
+import Form from './assets/form';
 import Bar from './assets/bar';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 function App() {
 
-  const [cookies, setCookie] = useCookies(['Potk']);
-  const [init, setInit] = useState(false)
+  const [storage, setStorage] = useState();
+  const [user, setUser] = useState()
+
+  const storageUser = AsyncStorage.getItem('user')
+
+  useEffect(()=>{
+    storageUser.then((data)=>{
+      // console.log('localUser',JSON.parse(data))
+      if(data){
+        console.log('Hay un usuario')
+        setStorage(true)
+        setUser(JSON.parse(data))
+      } else {
+        console.log('No hay usuario')
+        setStorage(false)
+      }
+    })
+  },[])
 
 
   
 
 
   return (
-    <Box>
+    <Box height={'100vh'}>
 
-      <Bar/>
+      {storage?<Bar user={user}/>:undefined}
 
 
       <Box
         display={'frex'}
         justifyContent={'center'}
         alignItems={'center'}
-        height={'100vh'}
         flexDirection={'column'}
       >
 
@@ -36,18 +49,18 @@ function App() {
 
           <Box display={'flex'} justifyContent={'center'}>
 
-            <Box
+            {storage===false?<Box
               fontSize={50} textAlign={'center'} padding={1}
               className={'title'} maxWidth={200}
               bgcolor={'red'} color={'white'} mb={1}
             >
               <strong>POKET</strong>
-            </Box>
+            </Box>:undefined}
 
           </Box>
 
           <Box>
-            {cookies.Potk !== undefined?<Intro2/>:<Intro setInit={setInit}/>}
+            {storage?undefined:<Form storage={storage}/>}
           </Box>
 
         </Box>

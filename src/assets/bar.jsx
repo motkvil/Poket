@@ -1,19 +1,15 @@
 import { Box } from "@mui/material"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 import gsap from "gsap"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useCookies } from "react-cookie"
 
 
-function Bar(){
+function Bar(props){
   const[cookieUser] = useCookies(['User'])
 
 
   useEffect(()=>{
-    if(cookieUser.User){
-
-      let data = cookieUser.User
-      console.log(data)
-    }
 
     gsap.fromTo('.bar',{
       height:'0px',
@@ -32,22 +28,18 @@ function Bar(){
   return(
     <Box>
 
-      {
-        cookieUser.User?
-        <Box bgcolor={'red'} boxSizing={'content-box'} overflow={'hidden'} className={'bar'} height={'0px'}>
+      <Box bgcolor={'red'} boxSizing={'content-box'} overflow={'hidden'} className={'bar'} height={'0px'} display={'flex'}>
 
-          <Box color={'white'} fontSize={30} p={1}>
-            <strong>POTK</strong>
-          </Box>
-
-          <Box display={'flex'} justifyContent={'space-between'} p={1}>
-            <Box color={'white'}>{cookieUser.User[0].value}</Box>
-            <Box color={'white'}>{cookieUser.User[1].value}</Box>
-          </Box>
-
+        <Box color={'white'} fontSize={30} p={1} flexGrow={1} display={'flex'} alignItems={'center'}>
+          <strong>POKET</strong>
         </Box>
-        :undefined
-      }
+
+        <Box p={1}>
+          <Box fontSize={30} color={'white'}>{props.user.username}</Box>
+          <Box fontSize={20} color={'white'}>{props.user.email}</Box>
+        </Box>
+
+      </Box>
 
     </Box>
   )

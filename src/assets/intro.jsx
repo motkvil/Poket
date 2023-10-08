@@ -14,6 +14,8 @@ function Intro(props) {
   const createCookie = () => {
     setCookie('Potk', {iniciar:true}, {path:''})
     props.setInit(true)
+
+    
   }
 
   
