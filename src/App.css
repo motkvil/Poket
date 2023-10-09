@@ -6,6 +6,9 @@
 }
 
 
+.details:hover{
+  background-color: hsla(0, 0%, 0%, .2);
+}
 
 
 .Iniciar {

@@ -1,6 +1,14 @@
 import { Box,Grid } from "@mui/material";
+import { useState } from "react";
 
 function IndexPage(props) {
+
+  const [itemActive, setItemActive] = useState("Alojamiento")
+
+  const selectItem = (props) => {
+    setItemActive(props)
+  }
+
   return (
     <Box p={1}>
       
@@ -321,27 +329,88 @@ function IndexPage(props) {
           ].map((item,index)=>(
             <Grid item xs={12} md={6} key={index}>
               <Box 
-                borderRadius={2} p={1} 
+                p={1}  overflow={'hidden'}
+
               >
 
-                <Box
-                  bgcolor={'#ff0000'} color={'white'}
-                  style={{borderRadiusTopLeft:'10px'}} p={1}
-                >
-                  <strong>{item.title}</strong>
+              
+                <Box borderRadius={2} m={1} bgcolor={'#ff0000'} mb={4}  display={'flex'} boxShadow={'0px 7px 7px gray'}>
+
+                  <Box p={2} color={'white'} display={'flex'} flexGrow={1} flexDirection={'column'}>
+                    <Box fontSize={40}>
+                      <strong>{item.title}</strong>
+                    </Box>
+                    <Box fontSize={60} flexGrow={1}>$9000</Box>
+                    <Box  p={2} fontSize={20} color={'white'} className={'details'} borderRadius={2}
+                      textAlign={'center'} style={{cursor:'pointer',borderTop:'dashed 3px white'}}
+                      onClick={()=>selectItem(item.title)}
+                    >
+                      <strong>Details</strong>
+                    </Box>
+                  </Box>
+
+                  <Box 
+                    p={2} display={'flex'} justifyContent={'center'} borderRadius={2} 
+                    flexDirection={'column'} bgcolor={'white'} width={'100%'}
+                    boxShadow={'0px 0px 10px gray'}
+                  >
+                    <Box p={1} fontSize={30} >
+                      {item.items.length} {' Items'}
+                    </Box>
+                    <Box p={1} fontSize={24} bgcolor={'#ff0000'} color={'white'} borderRadius={2}>
+                      <strong>Agregar item </strong>
+                    </Box>
+                  </Box>
                 </Box>
 
-                <Box>
-                  {
-                    item.items.map((item,index)=>(
-                      <Box key={index}>
-                        {item.title}
-                        {item.prev_cost}
-                        {item.real_cost}
-                      </Box>
-                    ))
-                  }
-                </Box>
+
+
+                {
+                  itemActive===item.title?
+                  <Box>
+                    <Box
+                      bgcolor={'#ff0000'} color={'white'}
+                      style={{borderTopLeftRadius:'10px',borderTopRightRadius:'10px'}} p={1}
+                    >
+                      <Grid container>
+                        <Grid item xs={4}>
+                          <strong>{item.title}</strong>
+                        </Grid>
+                        
+
+                        <Grid item xs={4}>
+                          <strong>Costo previsto</strong>
+                        </Grid>
+                        <Grid item xs={4}>
+                          <strong>Costo real</strong>
+                        </Grid>
+                      </Grid>
+                    </Box>
+
+                    <Box>
+                      {
+                        item.items.map((item,index)=>(
+                          <Box key={index} p={1} fontSize={20} display={'flex'} borderBottom={1} color={"hsla(0,0%,0%,.2)"}>
+                            <Grid container>
+                              <Grid item xs={4}>
+                                <Box color={'black'} p={1} flexGrow={1}><strong>{item.title}</strong></Box>
+                              </Grid>
+                              <Grid item xs={4}>
+                                <Box p={1} bgcolor={'hsla(39,60%,60%,.9)'} borderRadius={3} color={'black'} flexGrow={2}>${item.prev_cost}</Box>
+                              </Grid>
+                              <Grid item xs={4}>
+                                <Box p={1} color={'black'} >${item.real_cost}</Box>
+                              </Grid>
+                            </Grid>
+                          </Box>
+                        ))
+                      }
+                    </Box>
+                  </Box>
+                  :undefined
+                }
+
+
               </Box>
             </Grid>
           ))}

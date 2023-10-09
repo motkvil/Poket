@@ -9,6 +9,7 @@ function Bar(props){
   const[cookieUser] = useCookies(['User'])
 
 
+
   useEffect(()=>{
 
     gsap.fromTo('.bar',{
@@ -28,7 +29,11 @@ function Bar(props){
   return(
     <Box>
 
-      <Box bgcolor={'red'} boxSizing={'content-box'} overflow={'hidden'} className={'bar'} height={'0px'} display={'flex'}>
+      <Box 
+        bgcolor={'red'} boxSizing={'content-box'} 
+        overflow={'hidden'} className={'bar'} height={'0px'} 
+        display={'flex'} boxShadow={'0px 0px 10px gray'}
+      >
 
         <Box color={'white'} fontSize={30} p={1} flexGrow={1} display={'flex'} alignItems={'center'}>
           <strong>POKET</strong>
