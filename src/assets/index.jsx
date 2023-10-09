@@ -19,7 +19,7 @@ function IndexPage(props) {
 
 
       <Box>
-        <Grid container spacing={2}>
+        <Grid container >
           {[
             {
               title: 'Alojamiento',
@@ -334,7 +334,7 @@ function IndexPage(props) {
               >
 
               
-                <Box borderRadius={2} m={1} bgcolor={'#ff0000'} mb={4}  display={'flex'} boxShadow={'0px 7px 7px gray'}>
+                <Box borderRadius={2} m={1} bgcolor={'#ff0000'} mb={2}  display={'flex'} boxShadow={'0px 7px 7px gray'}>
 
                   <Box p={2} color={'white'} display={'flex'} flexGrow={1} flexDirection={'column'}>
                     <Box fontSize={25}>
