@@ -337,10 +337,10 @@ function IndexPage(props) {
                 <Box borderRadius={2} m={1} bgcolor={'#ff0000'} mb={4}  display={'flex'} boxShadow={'0px 7px 7px gray'}>
 
                   <Box p={2} color={'white'} display={'flex'} flexGrow={1} flexDirection={'column'}>
-                    <Box fontSize={40}>
+                    <Box fontSize={30}>
                       <strong>{item.title}</strong>
                     </Box>
-                    <Box fontSize={60} flexGrow={1}>$9000</Box>
+                    <Box fontSize={50} flexGrow={1}>$9000</Box>
                     <Box  p={2} fontSize={20} color={'white'} className={'details'} borderRadius={2}
                       textAlign={'center'} style={{cursor:'pointer',borderTop:'dashed 3px white'}}
                       onClick={()=>selectItem(item.title)}
