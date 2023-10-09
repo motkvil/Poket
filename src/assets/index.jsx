@@ -337,7 +337,7 @@ function IndexPage(props) {
                 <Box borderRadius={2} m={1} bgcolor={'#ff0000'} mb={4}  display={'flex'} boxShadow={'0px 7px 7px gray'}>
 
                   <Box p={2} color={'white'} display={'flex'} flexGrow={1} flexDirection={'column'}>
-                    <Box fontSize={30}>
+                    <Box fontSize={25}>
                       <strong>{item.title}</strong>
                     </Box>
                     <Box fontSize={50} flexGrow={1}>$9000</Box>
