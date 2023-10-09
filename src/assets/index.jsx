@@ -373,15 +373,15 @@ function IndexPage(props) {
                       style={{borderTopLeftRadius:'10px',borderTopRightRadius:'10px'}} p={1}
                     >
                       <Grid container>
-                        <Grid item xs={4}>
+                        <Grid item xs={6}>
                           <strong>{item.title}</strong>
                         </Grid>
                         
 
-                        <Grid item xs={4}>
+                        <Grid item xs={3}>
                           <strong>Costo previsto</strong>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={3}>
                           <strong>Costo real</strong>
                         </Grid>
                       </Grid>
@@ -392,13 +392,13 @@ function IndexPage(props) {
                         item.items.map((item,index)=>(
                           <Box key={index} p={1} fontSize={20} display={'flex'} borderBottom={1} color={"hsla(0,0%,0%,.2)"}>
                             <Grid container>
-                              <Grid item xs={4}>
-                                <Box color={'black'} p={1} flexGrow={1}><strong>{item.title}</strong></Box>
+                              <Grid item xs={6}>
+                                <Box fontSize={20} color={'black'} p={1}><strong>{item.title}</strong></Box>
                               </Grid>
-                              <Grid item xs={4}>
-                                <Box p={1} bgcolor={'hsla(39,60%,60%,.9)'} borderRadius={3} color={'black'} flexGrow={2}>${item.prev_cost}</Box>
+                              <Grid item xs={3}>
+                                <Box p={1} bgcolor={'hsla(39,60%,60%,.9)'} borderRadius={3} color={'black'}>${item.prev_cost}</Box>
                               </Grid>
-                              <Grid item xs={4}>
+                              <Grid item xs={3}>
                                 <Box p={1} color={'black'} >${item.real_cost}</Box>
                               </Grid>
                             </Grid>
