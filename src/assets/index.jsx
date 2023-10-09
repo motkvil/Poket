@@ -350,14 +350,14 @@ function IndexPage(props) {
                   </Box>
 
                   <Box 
-                    p={2} display={'flex'} justifyContent={'center'} borderRadius={2} 
+                    p={1} display={'flex'} justifyContent={'center'} borderRadius={2} 
                     flexDirection={'column'} bgcolor={'white'} width={'100%'}
                     boxShadow={'0px 0px 10px gray'}
                   >
-                    <Box p={1} fontSize={30} >
+                    <Box p={1} fontSize={20} >
                       {item.items.length} {' Items'}
                     </Box>
-                    <Box p={1} fontSize={24} bgcolor={'#ff0000'} color={'white'} borderRadius={2}>
+                    <Box p={1} fontSize={20} bgcolor={'#ff0000'} color={'white'} borderRadius={2}>
                       <strong>Agregar item </strong>
                     </Box>
                   </Box>
