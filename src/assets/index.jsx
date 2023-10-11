@@ -5,9 +5,73 @@ import gsap from "gsap";
 function IndexPage(props) {
 
   const [itemActive, setItemActive] = useState("")
+  const [itemIsActive, setItemIsActive] = useState(false)
 
   const selectItem = (props) => {
     setItemActive(props === itemActive? "": props)
+    setItemIsActive(true)
+  }
+
+
+  const floatWindow = (item) => {
+    return (
+      <Box
+        position={'fixed'} boxSizing={'border-box'}
+        bgcolor={'hsla(0,0%,0%,.1)'}
+        p={1} height={'100%'} left={0} top={0}width={'100%'}
+        display={'flex'} justifyContent={'center'} alignItems={'center'}
+      >
+
+        <Box
+          bgcolor={'white'} height={'80vh'}
+          p={1} width={'80vw'} borderRadius={2}
+        >
+
+          <Box className={'itemDetails'}>
+            <Box
+              bgcolor={'#ff0000'} color={'white'} fontSize={20}
+              style={{borderTopLeftRadius:'10px',borderTopRightRadius:'10px'}} p={1}
+            >
+              <Grid container>
+                <Grid item xs={5}>
+                  <strong>{item.title}</strong>
+                </Grid>
+                
+
+                <Grid item xs={4}>
+                  <strong>Costo previsto</strong>
+                </Grid>
+                <Grid item xs={3}>
+                  <strong>Costo real</strong>
+                </Grid>
+              </Grid>
+            </Box>
+
+            <Box>
+              {
+                item.items.map((item,index)=>(
+                  <Box key={index} p={1} fontSize={20} display={'flex'} borderBottom={1} color={"hsla(0,0%,0%,.2)"}>
+                    <Grid container>
+                      <Grid item xs={5}>
+                        <Box fontSize={20} color={'black'} p={1}><strong>{item.title}</strong></Box>
+                      </Grid>
+                      <Grid item xs={4}>
+                        <Box p={1} bgcolor={'hsla(39,60%,60%,.9)'} borderRadius={3} color={'black'}>${item.prev_cost}</Box>
+                      </Grid>
+                      <Grid item xs={3}>
+                        <Box p={1} color={'black'} >${item.real_cost}</Box>
+                      </Grid>
+                    </Grid>
+                  </Box>
+                ))
+              }
+            </Box>
+          </Box>
+
+        </Box>
+
+      </Box>
+    )
   }
 
   
@@ -342,7 +406,8 @@ function IndexPage(props) {
           ].map((item,index)=>(
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Box 
-                p={1}  overflow={'hidden'}
+                overflow={'hidden'}
+                
               >
 
               
@@ -376,51 +441,10 @@ function IndexPage(props) {
                 </Box>
 
 
-
                 {
-                  itemActive===item.title?
-                  <Box className={'itemDetails'}>
-                    <Box
-                      bgcolor={'#ff0000'} color={'white'}
-                      style={{borderTopLeftRadius:'10px',borderTopRightRadius:'10px'}} p={1}
-                    >
-                      <Grid container>
-                        <Grid item xs={6}>
-                          <strong>{item.title}</strong>
-                        </Grid>
-                        
-
-                        <Grid item xs={3}>
-                          <strong>Costo previsto</strong>
-                        </Grid>
-                        <Grid item xs={3}>
-                          <strong>Costo real</strong>
-                        </Grid>
-                      </Grid>
-                    </Box>
-
-                    <Box>
-                      {
-                        item.items.map((item,index)=>(
-                          <Box key={index} p={1} fontSize={20} display={'flex'} borderBottom={1} color={"hsla(0,0%,0%,.2)"}>
-                            <Grid container>
-                              <Grid item xs={6}>
-                                <Box fontSize={20} color={'black'} p={1}><strong>{item.title}</strong></Box>
-                              </Grid>
-                              <Grid item xs={3}>
-                                <Box p={1} bgcolor={'hsla(39,60%,60%,.9)'} borderRadius={3} color={'black'}>${item.prev_cost}</Box>
-                              </Grid>
-                              <Grid item xs={3}>
-                                <Box p={1} color={'black'} >${item.real_cost}</Box>
-                              </Grid>
-                            </Grid>
-                          </Box>
-                        ))
-                      }
-                    </Box>
-                  </Box>
-                  :undefined
+                  itemIsActive? floatWindow(item): undefined
                 }
+
 
 
               </Box>
