@@ -1,9 +1,27 @@
+import { useState } from "react"
 import items from "./db/data"
 import { Box, Grid } from "@mui/material"
 
 const FloatWindow = (props) => {
 
+  const [itemValueIsActive, setItemValueIsActive] = useState(false)
+  const [valueItem, setValueItem] = useState("")
+  const [myInput, setMyInput] = useState("")
+
   let item = items.find(item => item.title === props.itemActive)
+
+  const setItemValue = (props) => {
+    setItemValueIsActive(!itemValueIsActive)
+    setValueItem(props.title)
+    console.log(props)
+    console.log(item)
+
+  }
+
+
+  const inputHandler = (e) => {
+    setMyInput(e.target.value, ...myInput)
+  }
 
   return (
     <Box
@@ -14,7 +32,7 @@ const FloatWindow = (props) => {
     >
 
       <Box
-         height={'80vh'}
+        height={'80vh'}
         p={1} width={'90vw'} borderRadius={2}
       >
 
@@ -48,7 +66,18 @@ const FloatWindow = (props) => {
                   <Box key={index} p={1} fontSize={20} display={'flex'} borderBottom={1} color={"hsla(0,0%,0%,.2)"}>
                     <Grid container>
                       <Grid item xs={5}>
-                        <Box fontSize={20} color={'black'} p={1}><strong>{item.title}</strong></Box>
+
+                        <Box onClick={()=>setItemValue(item)} fontSize={20} color={'black'} p={1}>
+                          <strong>{item.title}</strong>
+                        </Box>
+                          {
+                            itemValueIsActive && valueItem === item.title?
+                            <Box>
+                              <form>
+                                <input onChange={inputHandler} className='inputItemProperty'/>
+                              </form>
+                            </Box>:undefined
+                          }
                       </Grid>
                       <Grid item xs={4}>
                         <Box p={1} bgcolor={'hsla(39,60%,60%,.9)'} borderRadius={3} color={'black'}>${item.prev_cost}</Box>
