@@ -22,16 +22,6 @@ function IndexPage(props) {
 
   
 
-  useEffect(()=>{
-    gsap.fromTo('.itemDetails',{
-      height:'0px',
-      duration:1,
-    },{
-      height:'auto',
-      duration:1,
-    })
-  },[itemActive])
-
   return (
     <Box p={1}>
       
