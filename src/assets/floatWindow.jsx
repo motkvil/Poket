@@ -23,6 +23,10 @@ const FloatWindow = (props) => {
     setMyInput(e.target.value, ...myInput)
   }
 
+  const onSubmit = () => {
+    
+  }
+
   return (
     <Box
       position={'fixed'} boxSizing={'border-box'}
