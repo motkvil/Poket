@@ -24,7 +24,7 @@ const FloatWindow = (props) => {
   }
 
   const onSubmit = () => {
-    
+
   }
 
   return (
@@ -67,29 +67,49 @@ const FloatWindow = (props) => {
             <Box>
               {
                 item.items.map((item,index)=>(
-                  <Box key={index} p={1} fontSize={20} display={'flex'} borderBottom={1} color={"hsla(0,0%,0%,.2)"}>
-                    <Grid container>
-                      <Grid item xs={5}>
+                  <Box key={index}>
+                    <Box p={1} fontSize={20}  borderBottom={1} color={"hsla(0,0%,0%,.2)"}>
+                      <Box onClick={()=>setItemValue(item)}>
+                        <Grid container>
+                          <Grid item xs={5}>
 
-                        <Box onClick={()=>setItemValue(item)} fontSize={20} color={'black'} p={1}>
-                          <strong>{item.title}</strong>
+                            <Box fontSize={20} color={'black'} p={1}>
+                              <strong>{item.title}</strong>
+                            </Box>
+                              
+                          </Grid>
+                          <Grid item xs={4}>
+                            <Box p={1} bgcolor={'hsla(39,60%,60%,.9)'} borderRadius={3} color={'black'}>${item.prev_cost}</Box>
+                          </Grid>
+                          <Grid item xs={3}>
+                            <Box p={1} color={'black'} >${item.real_cost}</Box>
+                          </Grid>
+                        </Grid>
+                      </Box>
+                    </Box>
+                    {
+                      itemValueIsActive && valueItem === item.title?
+
+                      <Box display={'flex'} justifyContent={'space-around'} bgcolor={'hsla(0,0%,0%,.2)'} p={2}>
+                        <Box color={'white'} bgcolor={'red'} borderRadius={2} p={1}
+                          textAlign={'center'} display={'flex'} alignItems={'center'} justifyContent={'center'}
+                        >
+                          <strong>Delete</strong>
                         </Box>
-                          {
-                            itemValueIsActive && valueItem === item.title?
-                            <Box>
-                              <form>
-                                <input onChange={inputHandler} className='inputItemProperty'/>
-                              </form>
-                            </Box>:undefined
-                          }
-                      </Grid>
-                      <Grid item xs={4}>
-                        <Box p={1} bgcolor={'hsla(39,60%,60%,.9)'} borderRadius={3} color={'black'}>${item.prev_cost}</Box>
-                      </Grid>
-                      <Grid item xs={3}>
-                        <Box p={1} color={'black'} >${item.real_cost}</Box>
-                      </Grid>
-                    </Grid>
+
+                        <Box color={'white'} bgcolor={'brown'} borderRadius={2} p={1}
+                          textAlign={'center'} display={'flex'} alignItems={'center'} justifyContent={'center'}
+                        >
+                          <strong>Edit</strong>
+                        </Box>
+
+                        <Box color={'white'} bgcolor={'green'} borderRadius={2} p={1}
+                          textAlign={'center'} display={'flex'} alignItems={'center'} justifyContent={'center'}
+                        >
+                          <strong>Ok</strong>
+                        </Box>
+                      </Box>:undefined
+                    }
                   </Box>
                 ))
               }
