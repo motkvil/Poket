@@ -340,7 +340,9 @@ function IndexPage(props) {
         >
 
 
-          <Box height={'90%'} bgcolor={'white'} borderRadius={3}>
+          <Box height={'90%'} bgcolor={'white'} borderRadius={3}
+            overflow={'auto'}
+          >
             <Box className={'itemDetails'}>
               <Box
                 bgcolor={'#ff0000'} color={'white'} fontSize={20}
