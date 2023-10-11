@@ -1,13 +1,26 @@
 import { Box,Grid } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
 
 function IndexPage(props) {
 
-  const [itemActive, setItemActive] = useState("Alojamiento")
+  const [itemActive, setItemActive] = useState("")
 
   const selectItem = (props) => {
-    setItemActive(props)
+    setItemActive(props === itemActive? "": props)
   }
+
+  
+
+  useEffect(()=>{
+    gsap.fromTo('.itemDetails',{
+      height:'0px',
+      duration:1,
+    },{
+      height:'auto',
+      duration:1,
+    })
+  },[itemActive])
 
   return (
     <Box p={1}>
@@ -327,10 +340,9 @@ function IndexPage(props) {
               ]
             }
           ].map((item,index)=>(
-            <Grid item xs={12} md={6} key={index}>
+            <Grid item xs={12} sm={6} md={4} key={index}>
               <Box 
                 p={1}  overflow={'hidden'}
-
               >
 
               
@@ -341,8 +353,8 @@ function IndexPage(props) {
                       <strong>{item.title}</strong>
                     </Box>
                     <Box fontSize={50} flexGrow={1}>$9000</Box>
-                    <Box  p={2} fontSize={20} color={'white'} className={'details'} borderRadius={2}
-                      textAlign={'center'} style={{cursor:'pointer',borderTop:'dashed 3px white'}}
+                    <Box  p={2} fontSize={20} color={'white'} className={'details'}
+                      textAlign={'center'} style={{cursor:'pointer',borderTop:'dashed 3px white', borderBottomLeftRadius:'5px',borderBottomRightRadius:'5px'}}
                       onClick={()=>selectItem(item.title)}
                     >
                       <strong>Details</strong>
@@ -367,7 +379,7 @@ function IndexPage(props) {
 
                 {
                   itemActive===item.title?
-                  <Box>
+                  <Box className={'itemDetails'}>
                     <Box
                       bgcolor={'#ff0000'} color={'white'}
                       style={{borderTopLeftRadius:'10px',borderTopRightRadius:'10px'}} p={1}
