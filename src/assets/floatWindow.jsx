@@ -15,7 +15,7 @@ const FloatWindow = (props) => {
 
       <Box
          height={'80vh'}
-        p={1} width={'80vw'} borderRadius={2}
+        p={1} width={'90vw'} borderRadius={2}
       >
 
 
