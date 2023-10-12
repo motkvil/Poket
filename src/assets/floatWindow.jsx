@@ -1,6 +1,7 @@
 import { useState } from "react"
 import items from "./db/data"
 import { Box, Grid } from "@mui/material"
+import ItemOptions from "./itemOptions"
 
 const FloatWindow = (props) => {
 
@@ -15,7 +16,6 @@ const FloatWindow = (props) => {
     setValueItem(props.title)
     console.log(props)
     console.log(item)
-
   }
 
 
@@ -69,7 +69,7 @@ const FloatWindow = (props) => {
                 item.items.map((item,index)=>(
                   <Box key={index}>
                     <Box p={1} fontSize={20}  borderBottom={1} color={"hsla(0,0%,0%,.2)"}>
-                      <Box onClick={()=>setItemValue(item)}>
+                      <Box onClick={()=>setItemValue(item)} style={{cursor:'pointer'}}>
                         <Grid container>
                           <Grid item xs={5}>
 
@@ -89,27 +89,14 @@ const FloatWindow = (props) => {
                     </Box>
                     {
                       itemValueIsActive && valueItem === item.title?
-
-                      <Box display={'flex'} justifyContent={'space-around'} bgcolor={'hsla(0,0%,0%,.2)'} p={2}>
-                        <Box color={'white'} bgcolor={'red'} borderRadius={2} p={1}
-                          textAlign={'center'} display={'flex'} alignItems={'center'} justifyContent={'center'}
-                        >
-                          <strong>Delete</strong>
-                        </Box>
-
-                        <Box color={'white'} bgcolor={'brown'} borderRadius={2} p={1}
-                          textAlign={'center'} display={'flex'} alignItems={'center'} justifyContent={'center'}
-                        >
-                          <strong>Edit</strong>
-                        </Box>
-
-                        <Box color={'white'} bgcolor={'green'} borderRadius={2} p={1}
-                          textAlign={'center'} display={'flex'} alignItems={'center'} justifyContent={'center'}
-                        >
-                          <strong>Ok</strong>
-                        </Box>
-                      </Box>:undefined
-                    }
+                      <ItemOptions 
+                        itemValueIsActive={itemValueIsActive} 
+                        valueItem={valueItem} 
+                        item={item} 
+                      />
+                      :undefined
+                    }  
+                    
                   </Box>
                 ))
               }
