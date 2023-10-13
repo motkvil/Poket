@@ -14,8 +14,6 @@ const FloatWindow = (props) => {
   const setItemValue = (props) => {
     setItemValueIsActive(!itemValueIsActive)
     setValueItem(props.title)
-    console.log(props)
-    console.log(item)
   }
 
 
@@ -23,9 +21,7 @@ const FloatWindow = (props) => {
     setMyInput(e.target.value, ...myInput)
   }
 
-  const onSubmit = () => {
 
-  }
 
   return (
     <Box
@@ -66,29 +62,29 @@ const FloatWindow = (props) => {
 
             <Box>
               {
-                item.items.map((item,index)=>(
+                item.items.map((element,index)=>(
                   <Box key={index}>
                     <Box p={1} fontSize={20}  borderBottom={1} color={"hsla(0,0%,0%,.2)"}>
-                      <Box onClick={()=>setItemValue(item)} style={{cursor:'pointer'}}>
+                      <Box onClick={()=>setItemValue(element)} style={{cursor:'pointer'}}>
                         <Grid container>
                           <Grid item xs={5}>
 
                             <Box fontSize={20} color={'black'} p={1}>
-                              <strong>{item.title}</strong>
+                              <strong>{element.title}</strong>
                             </Box>
                               
                           </Grid>
                           <Grid item xs={4}>
-                            <Box p={1} bgcolor={'hsla(39,60%,60%,.9)'} borderRadius={3} color={'black'}>${item.prev_cost}</Box>
+                            <Box p={1} bgcolor={'hsla(39,60%,60%,.9)'} borderRadius={3} color={'black'}>${element.prev_cost}</Box>
                           </Grid>
                           <Grid item xs={3}>
-                            <Box p={1} color={'black'} >${item.real_cost}</Box>
+                            <Box p={1} color={'black'} >${element.real_cost}</Box>
                           </Grid>
                         </Grid>
                       </Box>
                     </Box>
                     {
-                      itemValueIsActive && valueItem === item.title?
+                      itemValueIsActive && valueItem === element.title?
                       <ItemOptions 
                         itemValueIsActive={itemValueIsActive} 
                         valueItem={valueItem} 
