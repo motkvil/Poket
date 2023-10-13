@@ -1,15 +1,19 @@
-import { useState } from "react"
-import items from "./db/data"
+import { useState, useEffect } from "react"
 import { Box, Grid } from "@mui/material"
 import ItemOptions from "./itemOptions"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 const FloatWindow = (props) => {
 
   const [itemValueIsActive, setItemValueIsActive] = useState(false)
   const [valueItem, setValueItem] = useState("")
   const [myInput, setMyInput] = useState("")
+  const [item,setItem] = useState()
 
-  let item = items.find(item => item.title === props.itemActive)
+
+  
+
+
 
   const setItemValue = (props) => {
     setItemValueIsActive(!itemValueIsActive)
@@ -21,18 +25,29 @@ const FloatWindow = (props) => {
     setMyInput(e.target.value, ...myInput)
   }
 
+  useEffect(()=>{
+    console.log(props.itemActive)
+    let localStorageItems = AsyncStorage.getItem('data')
+    localStorageItems.then(data=>{
+      let jsonItems = JSON.parse(data)
+      let myItem = jsonItems.find(e=> e.title === props.itemActive)
+      setItem(myItem)
+    })
+
+  },[props.itemActive])
+
 
 
   return (
     <Box
       position={'fixed'} boxSizing={'border-box'}
-      bgcolor={'hsla(0,0%,0%,.1)'}
+      bgcolor={'hsla(0,0%,100%)'}
       p={1} height={'100%'} left={0} top={0}width={'100%'}
       display={'flex'} justifyContent={'center'} alignItems={'center'}
     >
 
       <Box
-        height={'80vh'}
+        height={'90vh'}
         p={1} width={'90vw'} borderRadius={2}
       >
 
@@ -45,23 +60,28 @@ const FloatWindow = (props) => {
               bgcolor={'#ff0000'} color={'white'} fontSize={20}
               style={{borderTopLeftRadius:'10px',borderTopRightRadius:'10px'}} p={1}
             >
-              <Grid container>
-                <Grid item xs={5}>
-                  <strong>{item.title}</strong>
-                </Grid>
-                
+              {
+                item?
+                <Grid container>
+                  <Grid item xs={5}>
+                    <strong>{item.title}</strong>
+                  </Grid>
+                  
 
-                <Grid item xs={4}>
-                  <strong>Costo previsto</strong>
+                  <Grid item xs={4}>
+                    <strong>Costo previsto</strong>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <strong>Costo real</strong>
+                  </Grid>
                 </Grid>
-                <Grid item xs={3}>
-                  <strong>Costo real</strong>
-                </Grid>
-              </Grid>
+                :undefined
+              }
             </Box>
 
             <Box>
               {
+                item?
                 item.items.map((element,index)=>(
                   <Box key={index}>
                     <Box p={1} fontSize={20}  borderBottom={1} color={"hsla(0,0%,0%,.2)"}>
@@ -86,15 +106,18 @@ const FloatWindow = (props) => {
                     {
                       itemValueIsActive && valueItem === element.title?
                       <ItemOptions 
-                        itemValueIsActive={itemValueIsActive} 
+                        itemValueIsActive={itemValueIsActive}
+                        setItemValueIsActive={setItemValueIsActive}
                         valueItem={valueItem} 
-                        item={item} 
+                        item={item}
+                        setItem={setItem}
                       />
                       :undefined
                     }  
                     
                   </Box>
                 ))
+                :undefined
               }
             </Box>
           </Box>

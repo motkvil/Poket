@@ -12,22 +12,29 @@ function IndexPage(props) {
   const [itemIsActive, setItemIsActive] = useState(false)
   const [dataItems, setDataItems] = useState()
 
-  AsyncStorage.setItem('data', JSON.stringify(items))
-
-  const myItems = AsyncStorage.getItem('data')
-  
-  myItems.then((data)=>{
-    setDataItems(JSON.parse(data))
-  })
-
 
   
-
   const selectItem = (props) => {
     setItemActive(props)
     setItemIsActive(true)
   }
 
+  
+  useEffect(()=>{
+    const myItems = AsyncStorage.getItem('data')
+    
+    
+    myItems.then((data)=>{
+      if(data){
+        console.log("Hay data")
+        setDataItems(JSON.parse(data))
+      } else {
+        console.log("No hay data")
+        AsyncStorage.setItem('data', JSON.stringify(items))
+        setDataItems(items)
+      }
+    })
+  },[])
 
   
 
@@ -42,6 +49,16 @@ function IndexPage(props) {
         <p>¡<strong>Bienvenido</strong> a tu App de finanzas personales!</p>
       </Box>
 
+      {
+        itemIsActive?
+        <FloatWindow
+          itemActive={itemActive} 
+          itemIsActive={itemIsActive}
+          setItemIsActive={setItemIsActive} 
+        />
+        :undefined
+      }
+
 
       {
         dataItems?
@@ -52,10 +69,6 @@ function IndexPage(props) {
                 <Box 
                   overflow={'hidden'}
                 >
-
-                  {
-                    itemIsActive? <FloatWindow itemActive={itemActive} setItemIsActive={setItemIsActive} /> : undefined
-                  }
 
                 
                   <Box borderRadius={2} m={1} bgcolor={'#ff0000'} mb={2}  display={'flex'} boxShadow={'0px 7px 7px gray'}>
