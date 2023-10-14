@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { Box, Grid } from "@mui/material"
 import ItemOptions from "./itemOptions"
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import { useSwipeable } from "react-swipeable"
 
 const FloatWindow = (props) => {
 
@@ -20,6 +21,13 @@ const FloatWindow = (props) => {
     setItemValueIsActive(!itemValueIsActive)
     setValueItem(props.title)
   }
+
+  const hola = useSwipeable({
+    onSwiped: (data)=>{
+      console.log('SWIPED BITCH',data)
+      alert('hollaaaaa')
+    }
+  })
 
 
   const inputHandler = (e) => {
@@ -44,6 +52,7 @@ const FloatWindow = (props) => {
       position={'fixed'} top={0}
       bgcolor={'hsla(0,0%,100%)'}
       height={'100%'} width={'100vw'}
+      {...hola}
     >
 
       <Box 
@@ -90,7 +99,7 @@ const FloatWindow = (props) => {
               {
                 item?
                 item.items.map((element,index)=>(
-                  <Box key={index}>
+                  <Box key={index} {...hola}>
                     <Box p={1} fontSize={20}  borderBottom={1} color={"hsla(0,0%,0%,.2)"}>
                       <Box onClick={()=>setItemValue(element)} style={{cursor:'pointer'}}>
                         <Grid container>
