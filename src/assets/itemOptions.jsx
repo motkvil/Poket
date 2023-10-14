@@ -62,23 +62,23 @@ function ItemOptions(props){
           textAlign={'center'} display={'flex'} alignItems={'center'} justifyContent={'center'}
           style={{cursor:'pointer'}} onClick={deleteItem} minWidth={'25%'}
         >
-          <DeleteForever fontSize={"large"}/>
+          <DeleteForever fontSize={"medium"}/>
           <strong>Eliminar</strong>
         </Box>
 
-        <Box color={'white'} bgcolor={'brown'} borderRadius={2} p={1} pl={2} pr={2}
+        <Box color={'white'} bgcolor={'brown'} borderRadius={2} p={1} pl={2} pr={2} fontSize={20}
           textAlign={'center'} display={'flex'} alignItems={'center'} justifyContent={'center'}
           style={{cursor:'pointer'}} minWidth={'25%'} onClick={()=>setIsEditMode(!isEditMode)}
         >
-          <EditRounded fontSize={"large"}/>
+          <EditRounded fontSize={"medium"}/>
           <strong>Editar</strong>
         </Box>
 
-        <Box color={'white'} bgcolor={Theme.primary} borderRadius={2} p={1}
+        <Box color={'white'} bgcolor={Theme.primary} borderRadius={2} p={1} fontSize={20}
           textAlign={'center'} display={'flex'} alignItems={'center'} justifyContent={'center'}
           style={{cursor:'pointer'}} minWidth={'25%'}
         >
-          <CheckCircleOutline fontSize={"large"}/>
+          <CheckCircleOutline fontSize={"medium"}/>
           <strong>Listo</strong>
         </Box>
       </Box>
