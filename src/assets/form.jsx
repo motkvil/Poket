@@ -4,6 +4,7 @@ import { useCookies } from 'react-cookie'
 import { Box } from '@mui/material';
 import gsap from 'gsap';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Theme from '../theme';
 
 
 
@@ -53,7 +54,7 @@ function Form(props) {
 
             <form onSubmit={(e)=>submit(e,list)}>
 
-              <input autoFocus
+              <input autoFocus style={{border:'solid 3px '+Theme.primary}}
                 onChange={(e)=>change(e)}
                 value={myInput} className='input' placeholder={element.title}
               />
@@ -129,7 +130,7 @@ function Form(props) {
           Listo
         </Box>
         :
-        <Box fontSize={20} p={1} color={'gray'}>
+        <Box fontSize={20} p={1} color={'gray'} textAlign={'center'}>
           Unas preguntas antes de comenzar
         </Box>
         :undefined

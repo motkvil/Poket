@@ -3,6 +3,8 @@ import { Box, Grid } from "@mui/material"
 import ItemOptions from "./itemOptions"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { useSwipeable } from "react-swipeable"
+import { ArrowBackIos } from "@mui/icons-material"
+import Theme from "../theme"
 
 const FloatWindow = (props) => {
 
@@ -54,45 +56,53 @@ const FloatWindow = (props) => {
       {...hola}
     >
 
-      <Box 
-        height={'100vh'}
-        
-      >
+      <Box>
 
-        <Box height={'10vh'} boxSizing={'border-box'}
-          bgcolor={'#ff0000'} color={'white'} fontSize={20}
+        <Box boxSizing={'border-box'}
+          bgcolor={Theme.primary} color={'white'} fontSize={20}
           display={'flex'} flexDirection={'column'} justifyContent={'center'}
         >
 
-        <Box color={'white'} bgcolor={'hsla(0,0%,0%,.2)'} p={2} >
-          Atrás
-        </Box>
+          <Box color={'white'} p={2} onClick={()=>props.setItemIsActive(false)} style={{cursor:'pointer'}} 
+            display={'flex'} alignItems={'center'} borderBottom={1}
+          >
+            <Box display={'flex'} alignItems={'center'} flexGrow={1}>
+              <ArrowBackIos fontSize={'large'}/>
+              <Box><strong>Atrás</strong></Box>
+            </Box>
 
-        <Box display={'flex'} alignItems={'center'} p={1}>
-          {
-            item?
-            <Grid container>
-              
-              <Grid item xs={4}>
-                <strong>{item.title}</strong>
-              </Grid>
-              
+            <Box bgcolor={Theme.secondary} borderRadius={2} p={1}>
+              <strong>Agregar un item</strong>
+            </Box>
+          </Box>
 
-              <Grid item xs={4}>
-                <strong>Costo previsto</strong>
+          <Box display={'flex'} alignItems={'center'} p={2}>
+            {
+              item?
+              <Grid container>
+                
+                <Grid item xs={5}>
+                  <Box>
+                    <strong>{item.title}</strong>
+                  </Box>
+                </Grid>
+                
+
+                <Grid item xs={4}>
+                  <strong>Costo previsto</strong>
+                </Grid>
+                <Grid item xs={3}>
+                  <strong>Costo real</strong>
+                </Grid>
               </Grid>
-              <Grid item xs={3}>
-                <strong>Costo real</strong>
-              </Grid>
-            </Grid>
-            :undefined
-          }
-        </Box>
+              :undefined
+            }
+          </Box>
           
 
         </Box>
 
-        <Box height={'80vh'} overflow={'auto'} >
+        <Box>
           <Box className={'itemDetails'}>
             <Box>
               {
@@ -104,16 +114,20 @@ const FloatWindow = (props) => {
                         <Grid container>
                           <Grid item xs={5}>
 
-                            <Box fontSize={20} color={'black'} p={1}>
+                            <Box fontSize={20} color={'hsla(0,0%,0%,.7)'} p={1}>
                               <strong>{element.title}</strong>
                             </Box>
                               
                           </Grid>
                           <Grid item xs={4}>
-                            <Box p={1} bgcolor={'hsla(39,60%,60%,.9)'} borderRadius={3} color={'black'}>${element.prev_cost}</Box>
+                            <Box p={1} bgcolor={Theme.secondary} borderRadius={3} color={'white'}>
+                              <strong>${element.prev_cost}</strong>
+                            </Box>
                           </Grid>
                           <Grid item xs={3}>
-                            <Box p={1} color={'black'} >${element.real_cost}</Box>
+                            <Box p={1} color={'black'} color={'hsla(0,0%,0%,.7)'} >
+                              <strong>${element.real_cost}</strong>
+                            </Box>
                           </Grid>
                         </Grid>
                       </Box>
@@ -137,23 +151,8 @@ const FloatWindow = (props) => {
             </Box>
           </Box>
         </Box>
-
-        <Box height={'10vh'}>
-          <Box display={'flex'} p={1} justifyContent={'space-around'} textAlign={'center'}>
-            <Box bgcolor={'red'} borderRadius={1} minWidth={100} p={1}
-              fontSize={20} color={'white'} style={{cursor:'pointer'}} onClick={()=>props.setItemIsActive(false)}
-            >
-              <strong>Salir</strong>
-            </Box>
-
-            <Box bgcolor={'red'} borderRadius={1} minWidth={100} p={1}
-              fontSize={20} color={'white'} style={{cursor:'pointer'}}
-            >
-              <strong>Agregar item</strong>
-            </Box>
-          </Box>
-        </Box>
       </Box>
+        
 
 
 

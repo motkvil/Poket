@@ -6,6 +6,7 @@ import Form from './assets/form';
 import Bar from './assets/bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import IndexPage from './assets';
+import Theme from './theme';
 
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
 
 
   return (
-    <Box height={'100vh'} boxSizing={'border-box'}>
+    <Box boxSizing={'border-box'}>
 
 
       <Box
@@ -46,12 +47,12 @@ function App() {
 
         <Box>
 
-          <Box display={'flex'} justifyContent={'center'}>
+          <Box display={'flex'} justifyContent={'center'} >
 
             {storage===false?<Box
               fontSize={50} textAlign={'center'} padding={1}
-              className={'title'} maxWidth={200}
-              bgcolor={'red'} color={'white'} mb={1}
+              className={'title'} boxSizing={'border-box'}
+              bgcolor={Theme.primary} color={'white'} mb={1} width={'100vw'}
             >
               <strong>POKET</strong>
             </Box>:undefined}

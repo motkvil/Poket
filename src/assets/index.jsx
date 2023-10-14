@@ -4,6 +4,7 @@ import items from "./db/data";
 import FloatWindow from "./floatWindow";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Bar from "./bar";
+import Theme from "../theme";
 
 function IndexPage(props) {
 
@@ -70,9 +71,10 @@ function IndexPage(props) {
 
       {
         itemIsActive?undefined:
-        <Box p={1} borderRadius={2} fontSize={40} color={'#ff0000'} textAlign={'center'} >
-        <p>¡<strong>Bienvenido</strong> a tu App de finanzas personales!</p>
-      </Box>}
+        <Box p={1} borderRadius={2} fontSize={40} color={Theme.primary} textAlign={'center'} >
+          <p>¡<strong>Bienvenido</strong> a tu App de finanzas personales!</p>
+        </Box>
+      }
 
 
 
@@ -87,10 +89,10 @@ function IndexPage(props) {
                 >
 
                 
-                  <Box borderRadius={2} m={1} bgcolor={'#ff0000'} mb={2}  display={'flex'} boxShadow={'0px 7px 7px gray'}>
+                  <Box borderRadius={2} m={1} bgcolor={Theme.primary} mb={2}  display={'flex'} boxShadow={'0px 7px 7px gray'}>
 
                     <Box p={2} color={'white'} display={'flex'} flexGrow={1} flexDirection={'column'}>
-                      <Box fontSize={25}>
+                      <Box fontSize={item.title.length >= 14? 20: 24}>
                         <strong>{item.title}</strong>
                       </Box>
                       <Box fontSize={50} flexGrow={1}>$9000</Box>
@@ -110,7 +112,7 @@ function IndexPage(props) {
                       <Box p={1} fontSize={20} >
                         {item.items.length} {' Items'}
                       </Box>
-                      <Box p={1} fontSize={20} bgcolor={'#ff0000'} color={'white'} borderRadius={2}>
+                      <Box p={1} fontSize={20} bgcolor={Theme.secondary} color={'white'} borderRadius={2}>
                         <strong>Agregar item </strong>
                       </Box>
                     </Box>

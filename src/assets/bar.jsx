@@ -3,6 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 import gsap from "gsap"
 import { useEffect, useState } from "react"
 import { useCookies } from "react-cookie"
+import Theme from "../theme"
 
 
 function Bar(props){
@@ -30,7 +31,7 @@ function Bar(props){
     <Box>
 
       <Box 
-        bgcolor={'red'} boxSizing={'content-box'} 
+        bgcolor={Theme.primary} boxSizing={'content-box'} 
         overflow={'hidden'} className={'bar'} height={'0px'} 
         display={'flex'} boxShadow={'0px 0px 10px gray'}
       >
