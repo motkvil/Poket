@@ -42,13 +42,8 @@ function IndexPage(props) {
 
   return (
 
-    <Box p={1}>
+    <Box>
       
-
-      <Box p={1} borderRadius={2} fontSize={40} color={'#ff0000'} textAlign={'center'} >
-        <p>¡<strong>Bienvenido</strong> a tu App de finanzas personales!</p>
-      </Box>
-
       {
         itemIsActive?
         <FloatWindow
@@ -59,9 +54,16 @@ function IndexPage(props) {
         :undefined
       }
 
+      {
+        itemIsActive?undefined:
+        <Box p={1} borderRadius={2} fontSize={40} color={'#ff0000'} textAlign={'center'} >
+        <p>¡<strong>Bienvenido</strong> a tu App de finanzas personales!</p>
+      </Box>}
+
+
 
       {
-        dataItems?
+        dataItems && itemIsActive===false?
         <Box>
           <Grid container >
             {dataItems.map((item,index)=>(
@@ -105,13 +107,7 @@ function IndexPage(props) {
             ))}
           </Grid>
         </Box>
-        :
-        <Box
-          height={'60vh'} color={'red'} alignItems={'center'}
-          display={'flex'} justifyContent={'center'}
-        >
-          <Autorenew fontSize="large"/>
-        </Box>
+        :undefined
       }
     </Box>
   )

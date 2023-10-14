@@ -1,14 +1,17 @@
 import { Box } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import gsap from "gsap";
 import { DeleteForever, EditRounded, CheckCircleOutline} from "@mui/icons-material";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import EditForm from "./editForm";
 
 
 
 
 function ItemOptions(props){
-
+  const [isEditMode, setIsEditMode] = useState(false)
+  
+  
 
 
   const deleteItem = () => {
@@ -29,6 +32,8 @@ function ItemOptions(props){
     })
   }
 
+
+
   useEffect(()=>{
 
     gsap.fromTo('.itemOptions',{
@@ -43,6 +48,13 @@ function ItemOptions(props){
   return (
     
     <Box className={'itemOptions'} overflow={'hidden'}>
+
+      {
+        isEditMode?
+        <EditForm/>
+        :undefined
+      }
+      
       <Box display={'flex'} justifyContent={'space-around'} bgcolor={'hsla(0,0%,0%,.05)'} p={2}>
         <Box color={'white'} bgcolor={'red'} borderRadius={2} p={1}
           textAlign={'center'} display={'flex'} alignItems={'center'} justifyContent={'center'}
@@ -54,7 +66,7 @@ function ItemOptions(props){
 
         <Box color={'white'} bgcolor={'brown'} borderRadius={2} p={1} pl={2} pr={2}
           textAlign={'center'} display={'flex'} alignItems={'center'} justifyContent={'center'}
-          style={{cursor:'pointer'}} minWidth={'25%'}
+          style={{cursor:'pointer'}} minWidth={'25%'} onClick={()=>setIsEditMode(!isEditMode)}
         >
           <EditRounded fontSize={"large"}/>
           Editar

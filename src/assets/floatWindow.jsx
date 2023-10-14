@@ -11,6 +11,7 @@ const FloatWindow = (props) => {
   const [item,setItem] = useState()
 
 
+
   
 
 
@@ -40,45 +41,51 @@ const FloatWindow = (props) => {
 
   return (
     <Box
-      position={'fixed'} boxSizing={'border-box'}
+      position={'fixed'} top={0}
       bgcolor={'hsla(0,0%,100%)'}
-      p={1} height={'100%'} left={0} top={0}width={'100%'}
-      display={'flex'} justifyContent={'center'} alignItems={'center'}
+      height={'100%'} width={'100vw'}
     >
 
-      <Box
-        height={'90vh'}
-        p={1} width={'90vw'} borderRadius={2}
+      <Box 
+        height={'100vh'}
+        
       >
 
-
-        <Box height={'90%'} bgcolor={'white'} borderRadius={3}
-          overflow={'auto'}
+        <Box height={'10vh'}
+          bgcolor={'#ff0000'} color={'white'} fontSize={20}
+          p={1} display={'flex'} flexDirection={'column'} justifyContent={'center'}
         >
+
+        <Box color={'white'} bgcolor={'#ff0000'}>
+          Atrás
+        </Box>
+
+        <Box display={'flex'} alignItems={'center'}>
+          {
+            item?
+            <Grid container>
+              
+              <Grid item xs={4}>
+                <strong>{item.title}</strong>
+              </Grid>
+              
+
+              <Grid item xs={4}>
+                <strong>Costo previsto</strong>
+              </Grid>
+              <Grid item xs={3}>
+                <strong>Costo real</strong>
+              </Grid>
+            </Grid>
+            :undefined
+          }
+        </Box>
+          
+
+        </Box>
+
+        <Box height={'80vh'} overflow={'auto'} >
           <Box className={'itemDetails'}>
-            <Box
-              bgcolor={'#ff0000'} color={'white'} fontSize={20}
-              style={{borderTopLeftRadius:'10px',borderTopRightRadius:'10px'}} p={1}
-            >
-              {
-                item?
-                <Grid container>
-                  <Grid item xs={5}>
-                    <strong>{item.title}</strong>
-                  </Grid>
-                  
-
-                  <Grid item xs={4}>
-                    <strong>Costo previsto</strong>
-                  </Grid>
-                  <Grid item xs={3}>
-                    <strong>Costo real</strong>
-                  </Grid>
-                </Grid>
-                :undefined
-              }
-            </Box>
-
             <Box>
               {
                 item?
@@ -123,21 +130,24 @@ const FloatWindow = (props) => {
           </Box>
         </Box>
 
-        <Box display={'flex'} p={1} justifyContent={'space-around'} textAlign={'center'}>
-          <Box bgcolor={'red'} borderRadius={1} minWidth={100} p={1}
-            fontSize={20} color={'white'} style={{cursor:'pointer'}} onClick={()=>props.setItemIsActive(false)}
-          >
-            <strong>Salir</strong>
-          </Box>
+        <Box height={'10vh'}>
+          <Box display={'flex'} p={1} justifyContent={'space-around'} textAlign={'center'}>
+            <Box bgcolor={'red'} borderRadius={1} minWidth={100} p={1}
+              fontSize={20} color={'white'} style={{cursor:'pointer'}} onClick={()=>props.setItemIsActive(false)}
+            >
+              <strong>Salir</strong>
+            </Box>
 
-          <Box bgcolor={'red'} borderRadius={1} minWidth={100} p={1}
-            fontSize={20} color={'white'} style={{cursor:'pointer'}}
-          >
-            <strong>Agregar item</strong>
+            <Box bgcolor={'red'} borderRadius={1} minWidth={100} p={1}
+              fontSize={20} color={'white'} style={{cursor:'pointer'}}
+            >
+              <strong>Agregar item</strong>
+            </Box>
           </Box>
         </Box>
-
       </Box>
+
+
 
     </Box>
   )
