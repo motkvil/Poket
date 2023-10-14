@@ -49,7 +49,6 @@ const FloatWindow = (props) => {
 
   return (
     <Box
-      position={'fixed'} top={0}
       bgcolor={'hsla(0,0%,100%)'}
       height={'100%'} width={'100vw'}
       {...hola}
@@ -60,16 +59,16 @@ const FloatWindow = (props) => {
         
       >
 
-        <Box height={'10vh'}
+        <Box height={'10vh'} boxSizing={'border-box'}
           bgcolor={'#ff0000'} color={'white'} fontSize={20}
-          p={1} display={'flex'} flexDirection={'column'} justifyContent={'center'}
+          display={'flex'} flexDirection={'column'} justifyContent={'center'}
         >
 
-        <Box color={'white'} bgcolor={'#ff0000'}>
+        <Box color={'white'} bgcolor={'hsla(0,0%,0%,.2)'} p={2} >
           Atrás
         </Box>
 
-        <Box display={'flex'} alignItems={'center'}>
+        <Box display={'flex'} alignItems={'center'} p={1}>
           {
             item?
             <Grid container>

@@ -36,8 +36,6 @@ function App() {
   return (
     <Box height={'100vh'} boxSizing={'border-box'}>
 
-      {storage?<Bar user={user}/>:undefined}
-
 
       <Box
         display={'frex'}

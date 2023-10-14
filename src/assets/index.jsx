@@ -1,16 +1,18 @@
 import { Box,Grid } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
+import { useEffect, useState } from "react";
 import items from "./db/data";
 import FloatWindow from "./floatWindow";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Autorenew } from "@mui/icons-material";
+import Bar from "./bar";
 
 function IndexPage(props) {
 
   const [itemActive, setItemActive] = useState("")
   const [itemIsActive, setItemIsActive] = useState(false)
   const [dataItems, setDataItems] = useState()
+  const [user, setUser] = useState()
+
+
 
 
   
@@ -22,7 +24,7 @@ function IndexPage(props) {
   
   useEffect(()=>{
     const myItems = AsyncStorage.getItem('data')
-    
+    const storageUser = AsyncStorage.getItem('user')
     
     myItems.then((data)=>{
       if(data){
@@ -34,6 +36,16 @@ function IndexPage(props) {
         setDataItems(items)
       }
     })
+
+    storageUser.then((data)=>{
+      // console.log('localUser',JSON.parse(data))
+      if(data){
+        console.log('Hay un usuario')
+        setUser(JSON.parse(data))
+      } else {
+        console.log('No hay usuario')
+      }
+    })
   },[])
 
   
@@ -43,6 +55,8 @@ function IndexPage(props) {
   return (
 
     <Box>
+
+      {itemIsActive?undefined:user && itemIsActive === false?<Bar user={user}/>:undefined}
       
       {
         itemIsActive?
