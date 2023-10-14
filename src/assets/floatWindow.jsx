@@ -125,7 +125,7 @@ const FloatWindow = (props) => {
                             </Box>
                           </Grid>
                           <Grid item xs={3}>
-                            <Box p={1} color={'black'} color={'hsla(0,0%,0%,.7)'} >
+                            <Box p={1} color={'hsla(0,0%,0%,.7)'} >
                               <strong>${element.real_cost}</strong>
                             </Box>
                           </Grid>
