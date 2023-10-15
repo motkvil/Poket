@@ -5,6 +5,7 @@ import FloatWindow from "./floatWindow";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Bar from "./bar";
 import Theme from "../theme";
+import MainComponent from "./mainComponent";
 
 function IndexPage(props) {
 
@@ -80,6 +81,14 @@ function IndexPage(props) {
 
       {
         dataItems && itemIsActive===false?
+        <MainComponent/>
+        :undefined
+      }
+
+
+
+      {
+        dataItems && itemIsActive===false?
         <Box>
           <Grid container >
             {dataItems.map((item,index)=>(
@@ -112,7 +121,7 @@ function IndexPage(props) {
                       <Box p={1} fontSize={20} >
                         {item.items.length} {' Items'}
                       </Box>
-                      <Box p={1} fontSize={20} bgcolor={Theme.secondary} color={'white'} borderRadius={2}>
+                      <Box p={1} fontSize={20} bgcolor={Theme.secondary} maxWidth={150} color={'white'} borderRadius={2}>
                         <strong>Agregar item </strong>
                       </Box>
                     </Box>

@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import './App.css'
 import { Box } from '@mui/material';
 import Form from './assets/form';
-import Bar from './assets/bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import IndexPage from './assets';
 import Theme from './theme';
