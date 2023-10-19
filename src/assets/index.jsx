@@ -72,7 +72,7 @@ function IndexPage(props) {
 
       {
         itemIsActive?undefined:
-        <Box p={1} borderRadius={2} fontSize={40} color={Theme.primary} textAlign={'center'} >
+        <Box p={1} borderRadius={2} fontSize={30} color={Theme.primary} textAlign={'left'} >
           <p>¡<strong>Bienvenido</strong> a tu App de finanzas personales!</p>
         </Box>
       }

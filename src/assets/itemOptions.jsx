@@ -10,7 +10,15 @@ import Theme from "../theme";
 
 
 function ItemOptions(props){
+  // props: 
+  // item, 
+  // setItem, 
+  // valueItem, 
+  // setItemValueIsActive,
+  // itemValueIsActive
+  
   const [isEditMode, setIsEditMode] = useState(false)
+  const [saveItem, setSaveItem] = useState(false)
   
   
 
@@ -34,6 +42,15 @@ function ItemOptions(props){
   }
 
 
+  const saveMyItem = () => {
+    setSaveItem(true)
+
+    setTimeout(()=>{
+      setSaveItem(false)
+    },[300])
+  }
+
+
 
   useEffect(()=>{
 
@@ -52,7 +69,15 @@ function ItemOptions(props){
 
       {
         isEditMode?
-        <EditForm/>
+        <EditForm 
+          itemValueIsActive={props.itemValueIsActive}
+          setItemValueIsActive={props.setItemValueIsActive}
+          valueItem={props.valueItem} 
+          item={props.item}
+          setItem={props.setItem}
+          saveItem={saveItem}
+          setSaveItem={setSaveItem}
+        />
         :undefined
       }
       
@@ -76,7 +101,7 @@ function ItemOptions(props){
 
         <Box color={'white'} bgcolor={Theme.primary} borderRadius={2} p={1} fontSize={20}
           textAlign={'center'} display={'flex'} alignItems={'center'} justifyContent={'center'}
-          style={{cursor:'pointer'}} minWidth={'25%'}
+          style={{cursor:'pointer'}} minWidth={'25%'} onClick={()=>saveMyItem()}
         >
           <CheckCircleOutline fontSize={"medium"}/>
           <strong>Listo</strong>

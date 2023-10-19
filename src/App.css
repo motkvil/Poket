@@ -39,10 +39,11 @@
 }
 
 .inputItemProperty{
-  padding: 3px;
+  padding: 5px;
   font-size: 20px;
   outline-style: none;
   border-radius: 5px;
+  border: dashed 1px gray;
   width: 90%;
 }
 
