@@ -38,7 +38,7 @@ function MainComponent (props) {
             <Grid container spacing={2}>
 
               <Grid item xs={12} sm={6}>
-                <Box  boxShadow={'inset 0px 5px 10px gray'} borderRadius={1} p={1}>
+                <Box borderRadius={1} p={1} border={'dashed 2px gray'}>
                   <Box color={Theme.primary} fontSize={20}>
                     <strong>Ingreso mensual real</strong>
                   </Box>
@@ -49,7 +49,7 @@ function MainComponent (props) {
               </Grid>
 
               <Grid item xs={12} sm={6}>
-                <Box borderRadius={1} p={1} boxShadow={'inset 0px 5px 10px gray'}>
+                <Box borderRadius={1} p={1} border={'dashed 2px gray'}>
                   <Box color={Theme.primary} fontSize={20}>
                     <strong>Ingreso mensual previsto</strong>
                   </Box>
