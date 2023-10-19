@@ -94,13 +94,12 @@ function IndexPage(props) {
             {dataItems.map((item,index)=>(
               <Grid item xs={12} sm={6} md={4} key={index}>
                 <Box 
-                  overflow={'hidden'}
                 >
 
                 
-                  <Box borderRadius={2} m={1} bgcolor={Theme.primary} mb={2}  display={'flex'} boxShadow={'0px 7px 7px gray'}>
+                  <Box borderRadius={2} m={1} bgcolor={Theme.primary} mb={2}  display={'flex'} boxShadow={'0px 1px 7px gray'}>
 
-                    <Box p={2} color={'white'} display={'flex'} flexGrow={1} flexDirection={'column'}>
+                    <Box p={2} color={'white'} flexGrow={1} flexDirection={'column'}>
                       <Box fontSize={item.title.length >= 14? 20: 24}>
                         <strong>{item.title}</strong>
                       </Box>
@@ -116,7 +115,6 @@ function IndexPage(props) {
                     <Box 
                       p={1} display={'flex'} justifyContent={'center'} borderRadius={2} 
                       flexDirection={'column'} bgcolor={'white'} width={'100%'}
-                      boxShadow={'0px 0px 10px gray'}
                     >
                       <Box p={1} fontSize={20} >
                         {item.items.length} {' Items'}
