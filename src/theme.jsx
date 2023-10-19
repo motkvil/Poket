@@ -1,6 +1,6 @@
 const Theme = {
 
-  primary: '#EF6900',
+  primary: '#00B3F5',
   secondary: '#DBB90C'
 }
 

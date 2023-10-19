@@ -99,30 +99,39 @@ function IndexPage(props) {
                 
                   <Box borderRadius={2} m={1} bgcolor={Theme.primary} mb={2}  display={'flex'} boxShadow={'0px 1px 7px gray'}>
 
-                    <Box p={2} color={'white'} flexGrow={1} flexDirection={'column'}>
-                      <Box fontSize={item.title.length >= 14? 20: 24}>
-                        <strong>{item.title}</strong>
-                      </Box>
-                      <Box fontSize={50} flexGrow={1}>$9000</Box>
-                      <Box  p={2} fontSize={20} color={'white'} className={'details'}
-                        textAlign={'center'} style={{cursor:'pointer',borderTop:'dashed 3px white', borderBottomLeftRadius:'5px',borderBottomRightRadius:'5px'}}
-                        onClick={()=>selectItem(item.title)}
-                      >
-                        <strong>Details</strong>
-                      </Box>
-                    </Box>
+                    <Grid container>
+                      <Grid item xs={7}>
+                        <Box p={2} color={'white'} flexGrow={1} flexDirection={'column'}>
+                          <Box fontSize={item.title.length >= 14? 20: 24}>
+                            <strong>{item.title}</strong>
+                          </Box>
+                          <Box fontSize={50} flexGrow={1}>$9000</Box>
+                          <Box  p={2} fontSize={20} color={'white'} className={'details'}
+                            textAlign={'center'} style={{cursor:'pointer',borderTop:'dashed 3px white', borderBottomLeftRadius:'5px',borderBottomRightRadius:'5px'}}
+                            onClick={()=>selectItem(item.title)}
+                          >
+                            <strong>Details</strong>
+                          </Box>
+                        </Box>
+                      </Grid>
 
-                    <Box 
-                      p={1} display={'flex'} justifyContent={'center'} borderRadius={2} 
-                      flexDirection={'column'} bgcolor={'white'} width={'100%'}
-                    >
-                      <Box p={1} fontSize={20} >
-                        {item.items.length} {' Items'}
-                      </Box>
-                      <Box p={1} fontSize={20} bgcolor={Theme.secondary} maxWidth={150} color={'white'} borderRadius={2}>
-                        <strong>Agregar item </strong>
-                      </Box>
-                    </Box>
+                      <Grid item xs={5}>
+                        <Box 
+                          p={1} display={'flex'} justifyContent={'center'} 
+                          flexDirection={'column'} bgcolor={'white'}
+                          style={{borderBottomLeftRadius:'10px', borderTopRightRadius:'10px'}}
+                          className='indexItemOptions'
+                        >
+                          <Box p={1} fontSize={20} >
+                            {item.items.length} {' Items'}
+                          </Box>
+                          <Box p={1} fontSize={20} bgcolor={Theme.secondary} maxWidth={150} color={'white'} borderRadius={2}>
+                            <strong>Agregar item </strong>
+                          </Box>
+                        </Box>
+                      </Grid>
+                    </Grid>
+
                   </Box>
 
                 </Box>
