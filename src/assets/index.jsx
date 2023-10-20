@@ -13,8 +13,25 @@ function IndexPage(props) {
   const [itemIsActive, setItemIsActive] = useState(false)
   const [dataItems, setDataItems] = useState()
   const [user, setUser] = useState()
+  const [dataIncome, setDataIncome] = useState({
+    monthlyIncome: 1100,
+    nextMonthlyIncome:1100
+  })
 
 
+
+  const getTotal = (array,value) => {
+    let total = 0
+
+    if(array){
+      for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        total += parseFloat(value===1?element.real_cost:element.prev_cost)
+      }
+    }
+
+    return total
+  }
 
 
   
@@ -27,6 +44,17 @@ function IndexPage(props) {
   useEffect(()=>{
     const myItems = AsyncStorage.getItem('data')
     const storageUser = AsyncStorage.getItem('user')
+    const myIncomes = AsyncStorage.getItem('income')
+
+
+    myIncomes.then(data=>{
+      if(data){
+        setDataIncome(JSON.parse(data))
+      } else {
+        AsyncStorage.setItem('income', JSON.stringify(dataIncome))
+      }
+    })
+
     
     myItems.then((data)=>{
       if(data){
@@ -48,6 +76,8 @@ function IndexPage(props) {
         console.log('No hay usuario')
       }
     })
+
+
   },[])
 
   
@@ -89,7 +119,10 @@ function IndexPage(props) {
 
       {
         dataItems && itemIsActive===false?
-        <Box>
+        <Box
+          height={'100vh'}
+          overflow={'hidden'}
+        >
           <Grid container >
             {dataItems.map((item,index)=>(
               <Grid item xs={12} sm={6} md={4} key={index}>
@@ -105,13 +138,11 @@ function IndexPage(props) {
                           <Box fontSize={item.title.length >= 14? 20: 24}>
                             <strong>{item.title}</strong>
                           </Box>
-                          <Box fontSize={50} flexGrow={1}>$9000</Box>
-                          <Box  p={2} fontSize={20} color={'white'} className={'details'}
-                            textAlign={'center'} style={{cursor:'pointer',borderTop:'dashed 3px white', borderBottomLeftRadius:'5px',borderBottomRightRadius:'5px'}}
-                            onClick={()=>selectItem(item.title)}
-                          >
-                            <strong>Details</strong>
-                          </Box>
+                          <Box fontSize={50} flexGrow={1}>${getTotal(item.items,1)}</Box>
+                          <Box>Costo actual</Box>
+                          <Box fontSize={30} flexGrow={1}>${getTotal(item.items,2)}</Box>
+                          <Box>Costo previsto</Box>
+                          
                         </Box>
                       </Grid>
 
@@ -129,6 +160,12 @@ function IndexPage(props) {
                             <strong>Agregar item </strong>
                           </Box>
                         </Box>
+                        <Box  p={2} fontSize={20} color={'white'} className={'details'}
+                            textAlign={'center'} style={{cursor:'pointer', borderBottomLeftRadius:'5px',borderBottomRightRadius:'5px'}}
+                            onClick={()=>selectItem(item.title)}
+                          >
+                            <strong>Details</strong>
+                          </Box>
                       </Grid>
                     </Grid>
 
