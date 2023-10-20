@@ -64,7 +64,7 @@ function MainComponent (props) {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <Box color={'white'} fontSize={45}>
-                  <strong>${realCost && monIncome?monIncome-realCost:'Sin gastos'}</strong>
+                  <strong>${realCost && monIncome?monIncome-realCost:monIncome}</strong>
                 </Box>
                 <Box color={'hsla(0,0%,0%,.3)'} fontSize={20} maxWidth={200}>
                   <strong>Saldo actual</strong>
@@ -73,7 +73,7 @@ function MainComponent (props) {
 
               <Grid item xs={12} sm={6}>
                 <Box color={'white'} fontSize={24}>
-                  <strong>${prevCost && nextMonIncome?nextMonIncome-prevCost:'Sin gastos'}</strong>
+                  <strong>${prevCost && nextMonIncome?nextMonIncome-prevCost:nextMonIncome}</strong>
                 </Box>
                 <Box color={'hsla(0,0%,0%,.3)'} fontSize={16} maxWidth={200}>
                   <strong>Saldo previsto</strong>
