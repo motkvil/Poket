@@ -6,6 +6,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Bar from "./bar";
 import Theme from "../theme";
 import MainComponent from "./mainComponent";
+import gsap from "gsap";
 
 function IndexPage(props) {
 
@@ -17,6 +18,7 @@ function IndexPage(props) {
     monthlyIncome: 1100,
     nextMonthlyIncome:1100
   })
+  const [moreItems, setMoreItems] = useState(false)
 
 
 
@@ -45,6 +47,21 @@ function IndexPage(props) {
     const myItems = AsyncStorage.getItem('data')
     const storageUser = AsyncStorage.getItem('user')
     const myIncomes = AsyncStorage.getItem('income')
+
+
+    if(moreItems){
+      gsap.to('.itemsContainer',{
+        height: 'auto',
+        duration: 1,
+        ease: 'power1.out'
+      })
+    } else {
+      gsap.to('.itemsContainer',{
+        height: '50vh',
+        duration: 1,
+        ease: 'power1.out'
+      })
+    }
 
 
     myIncomes.then(data=>{
@@ -78,7 +95,7 @@ function IndexPage(props) {
     })
 
 
-  },[])
+  },[moreItems])
 
   
 
@@ -119,62 +136,76 @@ function IndexPage(props) {
 
       {
         dataItems && itemIsActive===false?
-        <Box
-          height={'100vh'}
-          overflow={'hidden'}
-        >
-          <Grid container >
-            {dataItems.map((item,index)=>(
-              <Grid item xs={12} sm={6} md={4} key={index}>
-                <Box 
-                >
+        <Box>
+          <Box
+            height={'50vh'}
+            overflow={'hidden'}
+            boxShadow={'inset 0px 5px 10px gray'}
+            p={2} pt={4} mb={2} className={'itemsContainer'}
+          >
+            <Grid container >
+              {dataItems.map((item,index)=>(
+                <Grid item xs={12} sm={6} md={4} key={index}>
+                  <Box 
+                  >
 
-                
-                  <Box borderRadius={2} m={1} bgcolor={Theme.primary} mb={2}  display={'flex'} boxShadow={'0px 1px 7px gray'}>
+                  
+                    <Box borderRadius={2} m={1} bgcolor={Theme.primary} mb={2}  display={'flex'} boxShadow={'0px 1px 7px gray'}>
 
-                    <Grid container>
-                      <Grid item xs={7}>
-                        <Box p={2} color={'white'} flexGrow={1} flexDirection={'column'}>
-                          <Box fontSize={item.title.length >= 14? 20: 24}>
-                            <strong>{item.title}</strong>
+                      <Grid container>
+                        <Grid item xs={7}>
+                          <Box p={2} color={'white'} flexGrow={1} flexDirection={'column'}>
+                            <Box fontSize={item.title.length >= 14? 20: 24}>
+                              <strong>{item.title}</strong>
+                            </Box>
+                            <Box fontSize={50} flexGrow={1}>${getTotal(item.items,1)}</Box>
+                            <Box>Costo actual</Box>
+                            <Box fontSize={30} flexGrow={1}>${getTotal(item.items,2)}</Box>
+                            <Box>Costo previsto</Box>
+                            
                           </Box>
-                          <Box fontSize={50} flexGrow={1}>${getTotal(item.items,1)}</Box>
-                          <Box>Costo actual</Box>
-                          <Box fontSize={30} flexGrow={1}>${getTotal(item.items,2)}</Box>
-                          <Box>Costo previsto</Box>
-                          
-                        </Box>
-                      </Grid>
+                        </Grid>
 
-                      <Grid item xs={5}>
-                        <Box 
-                          p={1} display={'flex'} justifyContent={'center'} 
-                          flexDirection={'column'} bgcolor={'white'}
-                          style={{borderBottomLeftRadius:'10px', borderTopRightRadius:'10px'}}
-                          className='indexItemOptions'
-                        >
-                          <Box p={1} fontSize={20} >
-                            {item.items.length} {' Items'}
-                          </Box>
-                          <Box p={1} fontSize={20} bgcolor={Theme.secondary} maxWidth={150} color={'white'} borderRadius={2}>
-                            <strong>Agregar item </strong>
-                          </Box>
-                        </Box>
-                        <Box  p={2} fontSize={20} color={'white'} className={'details'}
-                            textAlign={'center'} style={{cursor:'pointer', borderBottomLeftRadius:'5px',borderBottomRightRadius:'5px'}}
-                            onClick={()=>selectItem(item.title)}
+                        <Grid item xs={5}>
+                          <Box 
+                            p={1} display={'flex'} justifyContent={'center'} 
+                            flexDirection={'column'} bgcolor={'white'}
+                            style={{borderBottomLeftRadius:'10px', borderTopRightRadius:'10px'}}
+                            className='indexItemOptions'
                           >
-                            <strong>Details</strong>
+                            <Box p={1} fontSize={20} >
+                              {item.items.length} {' Items'}
+                            </Box>
+                            <Box p={1} fontSize={20} bgcolor={Theme.secondary} maxWidth={150} color={'white'} borderRadius={2}>
+                              <strong>Agregar item </strong>
+                            </Box>
                           </Box>
+                          <Box  p={2} fontSize={20} color={'white'} className={'details'}
+                              textAlign={'center'} style={{cursor:'pointer', borderBottomLeftRadius:'5px',borderBottomRightRadius:'5px'}}
+                              onClick={()=>selectItem(item.title)}
+                            >
+                              <strong>Details</strong>
+                            </Box>
+                        </Grid>
                       </Grid>
-                    </Grid>
+
+                    </Box>
 
                   </Box>
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
 
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
+          <Box onClick={()=>setMoreItems(!moreItems)} style={{cursor:'pointer'}} bgcolor={Theme.secondary} fontSize={30} color={'white'} textAlign={'center'} p={2}>
+            {moreItems?'Less':'More'}
+          </Box>
+
+          <Box p={1}>
+            <Box p={1} bgcolor={Theme.primary} borderRadius={2}>
+
+            </Box>
+          </Box>
         </Box>
         :undefined
       }
