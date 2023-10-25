@@ -28,7 +28,7 @@ function Bar(props){
 
 
   return(
-    <Box>
+    <Box position={'fixed'} width={'100%'} top={0}>
 
       <Box 
         bgcolor={Theme.primary} boxSizing={'content-box'} 

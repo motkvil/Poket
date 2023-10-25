@@ -55,7 +55,7 @@ function MainComponent (props) {
 
   return (
     <Box
-      p={1}
+      p={1} pb={4}
     >
 
       <Grid container spacing={2}>
