@@ -40,8 +40,6 @@ function App() {
  
   const addSegment = () => {
     
-
-
     setSegments([...segments, {
       title: 'New Segment',
       description: 'This is a description'
@@ -63,14 +61,14 @@ function App() {
         p={3} boxSizing={'border-box'} overflow={'auto'}
       >
         <Box border={1} borderColor={'white'} borderRadius={2} p={3} pt={5} pb={5}>
-          <Box color={'white'} p={2} fontSize={25}>APP</Box>
+          <Box color={Theme.primary} p={2} fontSize={30}> <strong>APP</strong> </Box>
           <Grid container spacing={1}>
             {segments.map((e,i)=>(
               <Grid item xs={4} key={i}>
                 <Box display={'flex'} justifyContent={'center'} alignItems={'center'} color={'white'}>
                   <Box border={1} borderRadius={2}>
-                    <Box p={1} textAlign={'center'} fontSize={20}>
-                      {e.title}
+                    <Box p={1} textAlign={'center'} fontSize={20} color={Theme.primary}>
+                      <strong>{e.title}</strong>
                     </Box>
 
                     <Box fontSize={15} p={1} display={'flex'} alignItems={'center'} justifyContent={'center'} textAlign={'center'}>
