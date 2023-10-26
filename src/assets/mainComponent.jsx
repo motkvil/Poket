@@ -55,27 +55,27 @@ function MainComponent (props) {
 
   return (
     <Box
-      p={1} pb={4}
+      p={1} pb={3}
     >
 
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
-          <Box boxShadow={'1px 10px 20px gray'} p={3} borderRadius={2} bgcolor={Theme.primary}>
+          <Box textAlign={'center'} boxShadow={'0px 0px 10px gray'} p={1} borderRadius={2} bgcolor={Theme.primary}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <Box color={'white'} fontSize={45}>
+              <Grid item xs={12}>
+                <Box color={'white'} fontSize={30}>
                   <strong>${realCost && monIncome?monIncome-realCost:monIncome}</strong>
                 </Box>
-                <Box color={'hsla(0,0%,0%,.3)'} fontSize={20} maxWidth={200}>
+                <Box color={'hsla(0,0%,0%,.3)'} fontSize={13}>
                   <strong>Saldo actual</strong>
                 </Box>
               </Grid>
 
-              <Grid item xs={12} sm={6}>
-                <Box color={'white'} fontSize={24}>
+              <Grid item xs={12}>
+                <Box color={'white'} fontSize={30}>
                   <strong>${prevCost && nextMonIncome?nextMonIncome-prevCost:nextMonIncome}</strong>
                 </Box>
-                <Box color={'hsla(0,0%,0%,.3)'} fontSize={16} maxWidth={200}>
+                <Box color={'hsla(0,0%,0%,.3)'} fontSize={13} maxWidth={200}>
                   <strong>Saldo previsto</strong>
                 </Box>
               </Grid>
@@ -86,25 +86,25 @@ function MainComponent (props) {
 
         <Grid item xs={12} md={6}>
           <Box p={1} borderRadius={2}>
-            <Grid container spacing={2}>
+            <Grid container spacing={1}>
 
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <Box borderRadius={1} p={1} border={'dashed 2px gray'}>
-                  <Box color={Theme.primary} fontSize={20}>
-                    <strong>Ingreso mensual actual</strong>
+                  <Box color={Theme.primary} fontSize={13}>
+                    Ingreso mensual actual
                   </Box>
-                  <Box color={Theme.secondary} fontSize={25}>
+                  <Box color={Theme.secondary} fontSize={20}>
                     <strong>${monIncome}</strong>
                   </Box>
                 </Box>
               </Grid>
 
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} >
                 <Box borderRadius={1} p={1} border={'dashed 2px gray'}>
-                  <Box color={Theme.primary} fontSize={20}>
-                    <strong>Ingreso mensual previsto</strong>
+                  <Box color={Theme.primary} fontSize={13}>
+                    Ingreso mensual previsto
                   </Box>
-                  <Box color={Theme.secondary} fontSize={25}>
+                  <Box color={Theme.secondary} fontSize={20}>
                     <strong>${nextMonIncome}</strong>
                   </Box>
                 </Box>

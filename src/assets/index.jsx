@@ -57,7 +57,7 @@ function IndexPage(props) {
       })
     } else {
       gsap.to('.itemsContainer',{
-        height: '50vh',
+        height: '30vh',
         duration: 1,
         ease: 'power1.out'
       })
@@ -103,10 +103,14 @@ function IndexPage(props) {
 
   return (
 
-    <Box>
+    <Box 
+      pt={5}
+      pb={3}
+      overflow={'auto'}
+      height={'100vh'}
+      boxSizing={'border-box'}
+    >
 
-      {itemIsActive?undefined:user && itemIsActive === false?<Bar user={user}/>:undefined}
-      
       {
         itemIsActive?
         <FloatWindow
@@ -138,14 +142,16 @@ function IndexPage(props) {
         dataItems && itemIsActive===false?
         <Box>
           <Box
-            height={'50vh'}
-            overflow={'hidden'}
-            boxShadow={'inset 0px 5px 10px gray'}
-            p={2} pt={4} mb={2} className={'itemsContainer'}
+            overflow={'hidden'} boxSizing={'border-box'}
+            p={2} pt={1} mb={2}
+            boxShadow={'0px 0px 10px  hsla(0,0%,0%,.3)'}
+            borderColor={'hsla(0,0%,0%,.2)'}
+            borderRadius={2}
+            className={'itemsContainer'}
           >
             <Grid container >
               {dataItems.map((item,index)=>(
-                <Grid item xs={12} sm={6} md={4} key={index}>
+                <Grid item xs={12} md={12} key={index}>
                   <Box 
                   >
 
@@ -155,13 +161,19 @@ function IndexPage(props) {
                       <Grid container>
                         <Grid item xs={7}>
                           <Box p={2} color={'white'} flexGrow={1} flexDirection={'column'}>
-                            <Box fontSize={item.title.length >= 14? 20: 24}>
+                            <Box fontSize={item.title.length >= 14? 15: 20}>
                               <strong>{item.title}</strong>
                             </Box>
-                            <Box fontSize={50} flexGrow={1}>${getTotal(item.items,1)}</Box>
-                            <Box>Costo actual</Box>
-                            <Box fontSize={30} flexGrow={1}>${getTotal(item.items,2)}</Box>
-                            <Box>Costo previsto</Box>
+                            <Grid container>
+                              <Grid item xs={6}>
+                                <Box fontSize={30} flexGrow={1}>${getTotal(item.items,1)}</Box>
+                                <Box fontSize={13}>Costo actual</Box>
+                              </Grid>
+                              <Grid item xs={6}>
+                                <Box fontSize={30} flexGrow={1}>${getTotal(item.items,2)}</Box>
+                                <Box fontSize={13}>Costo previsto</Box>
+                              </Grid>
+                            </Grid>
                             
                           </Box>
                         </Grid>
@@ -196,16 +208,22 @@ function IndexPage(props) {
               ))}
             </Grid>
           </Box>
-
-          <Box onClick={()=>setMoreItems(!moreItems)} style={{cursor:'pointer'}} bgcolor={Theme.secondary} fontSize={30} color={'white'} textAlign={'center'} p={2}>
-            {moreItems?'Less':'More'}
-          </Box>
-
-          <Box p={1}>
-            <Box p={1} bgcolor={Theme.primary} borderRadius={2}>
-
+          
+          <Box
+            display={'flex'} justifyContent={'center'} alignItems={'center'}>
+            <Box 
+              onClick={()=>setMoreItems(!moreItems)} 
+              style={{cursor:'pointer'}} 
+              bgcolor={Theme.secondary} 
+              fontSize={13}
+              padding={1} 
+              color={'white'} 
+              textAlign={'center'} 
+              borderRadius={2}>
+              {moreItems?'Less':'More'}
             </Box>
           </Box>
+
         </Box>
         :undefined
       }
